@@ -1,1 +1,1 @@
-# lott
+## Forking or cloning requires adherence to license.txt. 

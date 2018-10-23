@@ -1,10 +1,11 @@
 const _ = require('lodash')
 var service = require('./service')
+var util = require('./util')
 
 var megaNumbers;
 var whiteBallsUnique;
 var numbers = []
-var ranges = [{s: 1, m: 15}, {s: 16, m: 33}, {s: 'x', m: 50}]
+var ranges = [{s: 1, m: 15}, {s: 16, m: 33}, {s: '', m: 50}]
 this.megaNumbers = service.getNumbers().then( (data) => {
     this.megaNumbers = data;
     getWhiteNumbers(data)
@@ -42,7 +43,7 @@ function inRangeNumGen(range, oddMode) {
     while(!valid) {
         let num = Math.round(Math.abs(Math.random() * Math.floor(range.m)))
         valid = (_.inRange(num, range.s, range.m) &&
-                 (oddMode ? isEven(num) : isOdd(num)) &&
+                 (oddMode ? util.isEven(num) : util.isOdd(num)) &&
                  _.indexOf(this.whiteBallsUnique, num) <= 0 )
 
         if(valid) {
@@ -50,15 +51,6 @@ function inRangeNumGen(range, oddMode) {
         }
     }
 }
-
-
-function isEven(n) {
-    return n % 2 == 0;
- }
- 
- function isOdd(n) {
-    return Math.abs(n % 2) == 1;
- }
 
  function getWhiteNumbers(collection) {
     var arr = _.flatten(collection)

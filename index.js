@@ -1,3 +1,4 @@
+'use strict';
 const _ = require('lodash')
 var service = require('./service')
 var util = require('./util')
@@ -6,6 +7,8 @@ var megaNumbers;
 var whiteBallsUnique;
 var numbers = []
 var ranges = [{s: 1, m: 15}, {s: 16, m: 33}, {s: '', m: 50}]
+
+
 this.megaNumbers = service.getNumbers().then( (data) => {
     this.megaNumbers = data;
     getWhiteNumbers(data)
